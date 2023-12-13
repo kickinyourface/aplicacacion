@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
 import requests
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/search_books', methods=['GET'])
 def search_books():
@@ -20,4 +22,4 @@ def search_books():
         return jsonify({'error': 'Failed to fetch data from Google Books API'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=3001, debug=True)
