@@ -1,5 +1,14 @@
 # Frontend React
 
+### (Only) First time installation:
+
+`npm i`
+
+Wait for installation on `node_modules`.
+
+
+### After you have everything setup:
+
 `npm start`
 
 Runs the app in the development mode.\
