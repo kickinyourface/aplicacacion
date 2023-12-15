@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button, Container, TextField, Typography } from '@mui/material';
+import './App.css';
 
 function App() {
   const [lastFetchStatus, setLastFetchStatus] = useState(true);
@@ -28,38 +30,36 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Google Books Search</h1>
+   <Container maxWidth="md">
+      <Typography variant="h1" gutterBottom>
+        Google Books Search
+      </Typography>
       <div>
-        <input
-          type="text"
+        <TextField
+          label="Enter search query"
+          variant="outlined"
+          fullWidth
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Enter search query"
         />
-        <button onClick={searchBooks}>Search</button>
+        <Button variant="contained" color="primary" onClick={searchBooks} style={{ marginTop: '10px' }}>
+          Search
+        </Button>
       </div>
-      <div>
-        <br />
-        <span
-          style={{
-            color: "red",
-            visibility: lastFetchStatus ? "hidden" : "inherit"
-          }}
-        >
-          Error while getting the fetched response
-        </span>
-      </div>
-      <div>
+      <div className="book-container">
         {books.map((book) => (
-          <div key={book.id}>
-            <h3>{book.volumeInfo.title}</h3>
-            <p>{book.volumeInfo.authors && book.volumeInfo.authors.join(', ')}</p>
+          <div className="book" key={book.id}>
+            <Typography variant="h3" gutterBottom>
+              {book.volumeInfo.title}
+            </Typography>
+            <Typography variant="body1">
+              {book.volumeInfo.authors && book.volumeInfo.authors.join(', ')}
+            </Typography>
             {/* Add more details as needed */}
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }
 
